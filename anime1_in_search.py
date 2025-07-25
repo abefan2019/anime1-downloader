@@ -1,3 +1,4 @@
+import os
 import web
 import regex
 def search(name):
@@ -36,6 +37,7 @@ def main(name):
     for code in codes:
         seasons+=season_urls(code)
     seasons=list(set(seasons))
+    print(len(seasons),"animes found")
     results={}
     for i in range(len(seasons)):
         print("reading",str(int(i/len(seasons)*100))+"%",end="\r")
@@ -51,4 +53,5 @@ def main(name):
     name=names[n-1]
     url=results[name]
     print("choosed",name)
-    return url
+    os.makedirs(os.path.join("anime",name),exist_ok=True)
+    return name,url
