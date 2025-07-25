@@ -46,15 +46,17 @@ def download(url):
     m3u8=regex.files(mcode,"ts")
     for i in range(len(m3u8)):
         web.save(regex.full_path(murl,m3u8[i]),os.path.join("tmp","%06d"%i+".ts"))
-def combine(name):
+        print("saving","%.1f"%(i/len(m3u8)*100)+"%",end="\r")
+    print("saving 100% ")
+def combine(season,name):
     files=sorted(os.listdir("tmp"))
     txt=os.path.join("tmp",'order.txt')
     with open(txt,"w") as f:
         for file in files:
             f.write("file '"+file+"'\n")
-    ffmpeg.input(txt,format="concat").output(os.path.join("anime",name+".mp4"),c='copy').run()
+    ffmpeg.input(txt,format="concat").output(os.path.join("anime",season,name+".mp4"),c='copy').run()
     tmp()
-def main(url):
+def main(season,url):
     codes=search(url)
     eps={}
     for code in codes:
@@ -69,9 +71,10 @@ def main(url):
         name=names[n-1]
         eps={name:eps[name]}
     for ep in eps:
-        print("downloading",ep)
+        print(ep,"downloading")
         download(eps[ep])
-        print(ep,"downloaded\ncombining",ep)
-        combine(ep)
+        print(ep,"downloaded")
+        print(ep,"combining")
+        combine(season,ep)
         print(ep,"combined")
         print(ep,"finished")
