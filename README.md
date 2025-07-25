@@ -17,6 +17,7 @@ name: 藍色監獄
 Found: https://anime1.in/page/1?s=藍色監獄
 Found: https://anime1.in/page/2?s=藍色監獄
 2 urls found
+5 animes found
 reading 100%
 (1) 藍色監獄
 (2) 藍色監獄 VS U-20 JAPAN
@@ -53,17 +54,16 @@ Found: https://anime1.in/2022-lan-se-jian-yu/page/2
 (23) 藍色監獄 [23]
 (24) 藍色監獄 [24]
 choose (None for all): 1
-downloading 藍色監獄 [01]
+藍色監獄 [01] downloading
+saving 100%
 藍色監獄 [01] downloaded
-combining 藍色監獄 [01]
+藍色監獄 [01] combining
 藍色監獄 [01] combined
 藍色監獄 [01] finished
-name: 
+name:
 Program finished
 ```
 ## To Do
-create folder for different seasons
-
 multithreading when download ts files
 
 skip ts file that is advertisement
