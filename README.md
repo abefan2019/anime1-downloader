@@ -4,7 +4,7 @@ This project is used to download animes from anime1. (anime1.in)
 You only need to know the name of the anime.
 
 ## Installation
-Install Python first then install ffmpeg-python
+Install Python and FFmpeg first then install ffmpeg-python
 ```
 pip install ffmpeg-python
 ```
