@@ -43,9 +43,9 @@ def download(url):
     mcode=web.html(murl)
     murl=regex.path(murl)+regex.files(mcode,"m3u8")[0]#true m3u8
     mcode=web.html(murl)
-    m3u8=regex.files(mcode,"ts")
+    m3u8=regex.m3u8(murl,regex.files(mcode,"ts"))
     for i in range(len(m3u8)):
-        web.save(regex.full_path(murl,m3u8[i]),os.path.join("tmp","%06d"%i+".ts"))
+        web.save(m3u8[i],os.path.join("tmp","%06d"%i+".ts"))
         print("saving","%.1f"%(i/len(m3u8)*100)+"%",end="\r")
     print("saving 100% ")
 def combine(season,name):
