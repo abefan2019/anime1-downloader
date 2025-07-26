@@ -10,5 +10,10 @@ def path(url):
         else:
             url=url[:-1]
     return url
-def full_path(murl,file):
-    return file if "http" in file else path(murl)+file
+def m3u8(murl,files):#remove ad
+    if "http" in files[0]:
+        uuid=files[0].split("/")[-4]
+        return [file for file in files if file.split("/")[-4]==uuid]
+    else:
+        uuid=int(files[-1][-9:-3])
+        return [path(murl)+file for file in files if int(file[-9:-3])<=uuid]
