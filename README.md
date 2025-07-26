@@ -66,8 +66,6 @@ Program finished
 ## To Do
 multithreading when download ts files
 
-skip ts file that is advertisement
-
 support anime1.cc anime1.me anime1.one
 ## Contact
 abefan2019@gmail.com
