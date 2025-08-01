@@ -10,12 +10,12 @@ def search(url):
     codes.append(web.html(urls[-1]))
     while "<article" in codes[-1]:
         n+=1
-        print("Found:",web.decode(urls[-1]))
+        regex.outer("Found:",web.decode(urls[-1]))
         urls.append(url+"page/"+str(n))
         codes.append(web.html(urls[-1]))
     urls.pop()
     codes.pop()
-    print(len(urls),"urls found")
+    regex.outer(len(urls),"urls found")
     return codes
 def ep_urls(code):
     eps={}
@@ -46,15 +46,15 @@ def download(url):
     m3u8=regex.m3u8(murl,regex.files(mcode,"ts"))
     for i in range(len(m3u8)):
         web.save(m3u8[i],os.path.join("tmp","%06d"%i+".ts"))
-        print("saving","%.1f"%(i/len(m3u8)*100)+"%",end="\r")
-    print("saving 100% ")
+        regex.outer("saving","%.1f"%(i/len(m3u8)*100)+"%",end="\r")
+    regex.outer("saving 100% ")
 def combine(season,name):
     files=sorted(os.listdir("tmp"))
-    txt=os.path.join("tmp",'order.txt')
+    txt=os.path.join("tmp","order.txt")
     with open(txt,"w") as f:
         for file in files:
             f.write("file '"+file+"'\n")
-    ffmpeg.input(txt,format="concat").output(os.path.join("anime",season,name+".mp4"),c='copy').run()
+    ffmpeg.input(txt,format="concat").output(os.path.join("anime",season,name+".mp4"),c='copy',loglevel="quiet").run()
     tmp()
 def main(season,url):
     codes=search(url)
@@ -63,18 +63,13 @@ def main(season,url):
         eps.update(ep_urls(code))
     eps=dict(sorted(eps.items()))
     names=list(eps.keys())
-    for i in range(len(names)):
-        print("("+str(i+1)+")",names[i])
-    n=input("choose (None for all): ")
-    if n:
-        n=int(n)
-        name=names[n-1]
-        eps={name:eps[name]}
+    names=regex.inter(names)
+    eps={name:eps[name] for name in names}
     for ep in eps:
-        print(ep,"downloading")
+        regex.outer(ep,"downloading")
         download(eps[ep])
-        print(ep,"downloaded")
-        print(ep,"combining")
+        regex.outer(ep,"downloaded")
+        regex.outer(ep,"combining")
         combine(season,ep)
-        print(ep,"combined")
-        print(ep,"finished")
+        regex.outer(ep,"combined")
+        regex.outer(ep,"finished")
