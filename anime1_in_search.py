@@ -9,12 +9,12 @@ def search(name):
     codes.append(web.html(urls[-1]))
     while "/page" in codes[-1]:
         n+=1
-        print("Found:",web.decode(urls[-1]))
+        regex.outer("Found:",web.decode(urls[-1]))
         urls.append(true_url(n,name))
         codes.append(web.html(urls[-1]))
     urls.pop()
     codes.pop()
-    print(len(urls),"urls found")
+    regex.outer(len(urls),"urls found")
     return codes
 def true_url(n,name):
     return "https://anime1.in/page/"+str(n)+"?s="+web.encode(name)
@@ -37,21 +37,20 @@ def main(name):
     for code in codes:
         seasons+=season_urls(code)
     seasons=list(set(seasons))
-    print(len(seasons),"animes found")
+    regex.outer(len(seasons),"animes found")
     results={}
     for i in range(len(seasons)):
-        print("reading",str(int(i/len(seasons)*100))+"%",end="\r")
+        regex.outer("reading",str(int(i/len(seasons)*100))+"%",end="\r")
         title=get_title(seasons[i])
         results[title]=seasons[i]
-    print("reading 100%")
+    regex.outer("reading 100%")
     del seasons
     results=dict(sorted(results.items()))
     names=list(results.keys())
-    for i in range(len(names)):
-        print("("+str(i+1)+")",names[i])
-    n=int(input("choose: "))
-    name=names[n-1]
-    url=results[name]
-    print("choosed",name)
-    os.makedirs(os.path.join("anime",name),exist_ok=True)
-    return name,url
+    names=regex.inter(names)
+    urls=[]
+    for name in names:
+        urls.append(results[name])
+        regex.outer("choosed",name)
+        os.makedirs(os.path.join("anime",name),exist_ok=True)
+    return names,urls
