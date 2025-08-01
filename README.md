@@ -11,7 +11,11 @@ pip install ffmpeg-python
 ## Usage
 Enter the name, choose the seasons, choose the episodes.
 
-example:
+Run main.py for CLI
+
+Run graphics.py for GUI
+
+example(CLI):
 ```
 name: 藍色監獄
 Found: https://anime1.in/page/1?s=藍色監獄
