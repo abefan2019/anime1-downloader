@@ -1,5 +1,6 @@
 import urllib.request
 import time
+import regex
 opener=urllib.request.build_opener()
 opener.addheaders=[("User-Agent","Chrome/123.0.0.0")]
 urllib.request.install_opener(opener)
@@ -16,12 +17,12 @@ def html(url):
             fp.close()
             break
         except:
-            print("failed to get",url)
-            print("try again in 5 second")
+            regex.outer("failed to get",url)
+            regex.outer("try again in 5 second")
             p=True
         time.sleep(5)
     if(p):
-        print("get",url)
+        regex.outer("get",url)
     time.sleep(0.1)
     return string
 def save(url,name):
@@ -32,10 +33,10 @@ def save(url,name):
             urllib.request.urlretrieve(url,name)
             break
         except:
-            print("failed to save",url)
-            print("try again in 5 second")
+            regex.outer("failed to save",url)
+            regex.outer("try again in 5 second")
             p=True
         time.sleep(5)
     if(p):
-        print("save",url)
+        regex.outer("save",url)
     time.sleep(0.1)
