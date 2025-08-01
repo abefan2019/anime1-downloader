@@ -4,8 +4,9 @@ def main():
     while True:
         name=input("name: ")
         if name:
-            season,url=anime1_in_search.main(name)
-            anime1_in_download.main(season,url)
+            seasons,urls=anime1_in_search.main(name)
+            for season,url in zip(seasons,urls):
+                anime1_in_download.main(season,url)
         else:
             break
     print("Program finished")
