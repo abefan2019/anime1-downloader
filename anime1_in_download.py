@@ -66,6 +66,9 @@ def main(season,url):
     names=regex.inter(names)
     eps={name:eps[name] for name in names}
     for ep in eps:
+        if os.path.isfile(os.path.join("anime",season,ep+".mp4")):
+            regex.outer(ep,"skipped (downloaded)")
+            continue
         regex.outer(ep,"downloading")
         download(eps[ep])
         regex.outer(ep,"downloaded")
