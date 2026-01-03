@@ -13,7 +13,7 @@ Enter the name, choose the seasons, choose the episodes.
 
 Run main.py for CLI
 
-Run graphics.py for GUI
+Run graphics.pyw for GUI
 
 example(CLI):
 ```
